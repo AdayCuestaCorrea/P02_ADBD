@@ -2,37 +2,58 @@
 ## Aday Cuesta Correa y Manuel José Sebastián Noda
 
 ## Descripción de cada una de las entidades definidas.
-1. **Vivero**: En esta entidad se recoge todo lo relacionado con las zonas y los productos que ahí se relaizan.
-2. **Zonas**: Entidad en la cual se fabrica un determinado producto.
-3. **Empleados**: Esta entidad es la encarga de represntar el número de personas qeu trabajanen los viveros.
-4. **Clientes Tajinaste Plus**: Por último, tenemos la entidad de los clientes de Tajinste Plus que realizan compras mensuales a los viveros.
+1. **Vivero**: En esta entidad se recoge todo lo relacionado con las zonas y los productos que ahí se realizan.
+2. **Zona**: Entidad en la cual se producen ciertos productos pertenecientes al vivero.
+3. **Empleado**: Esta entidad es la encargada de representar el número de personas qeu trabajan en los viveros, así como de almacenar otro tipos de datos relacionados con ellos.
+4. **Clientes Tajinaste Plus**: Por último, tenemos la entidad de los clientes de Tajinaste Plus que realizan compras mensuales a los viveros.
 ## Descripción y ejemplos ilustrativos del dominio de cada uno de los atributos de las entidades y de las relaciones.
 
 ### **Viveros**
 En esta entidad tenemos los siguientes atributos:
-1. **Nombre**: Es el nombre del vivero, para poder identificar los disntintos viveros entre si.
-2. **Georreferenica vivero**: Es la localización del vivero, por ejemplo, en que ciudad/calle/propiedad etc... se enecuentra.Esta formadad por los atributos latitud y longitud.
+1. **Nombre**: Es el nombre del vivero, para poder identificar los distintos viveros entre si, no es clave primaria porque consideramos que la georreferencia es más única de cada vivero que el nombre, pero podría serlo.
+2. **Georreferenica vivero**: Es la localización del vivero, es un atributo compuesto por la Latitud y Longitud lo que la hace perfecta para ser la clave primaria de la entidad pues no pueden existir 2 viveros en las mismas coordenadas.
 3. **Latitud**: Forma parte de la localización del vivero.
 4. **Longitud**: Forma parte de la localización del vivero.
-5. **Productos**: Representa el número total de los productos que se realizan en el vivero.
+5. **Productos**: Es un atributo compuesto por el nombre del producto y la cantidad (número de unidades existentes en stock), por ejemplo, 10 flores amarillas.
+6. **Nombre del Producto**: Pertenece al atributo Productos y se refiere al nombre del producto, por ejemplo, flores amarillas, etc.
+7. **Cantidad**: Es el número de unidades existentes que tiene el producto.
+
+### **Zona**
+En esta entidad tenemos los siguientes atributos:
+1. **Georreferenciación zona**: Es la localización de la zona, es un atributo compuesto por la Latitud y Longitud lo que la hace perfecta para ser la clave primaria de la entidad pues no pueden existir 2 zonas en las mismas coordenadas.
+2. **Latitud**: Forma parte de la localización de la zona, idealmente estará localizada dentro del vivero.
+3. **Longitud**: Forma parte de la localización de la zona, idealmente estará localizada dentro del vivero.
+4. **Productos**: Es un atributo compuesto por el nombre del producto y la cantidad (número de unidades existentes en stock), por ejemplo, 10 flores amarillas.
+5. **Nombre del Producto**: Pertenece al atributo Productos y se refiere al nombre del producto, por ejemplo, flores amarillas, etc.
+6. **Cantidad**: Es el número de unidades existentes que tiene el producto.
+7. **Nombre**: Es el nombre de la zona, por ejemplo, patio exterior, almacén, etc.
 
 ### **Empleado**
 En esta entidad tenemos los siguientes atributos:
-1. **Identificación**: Es un atributo que nos permite diferenciar los dintintos empleados del vivero.
-2. **Zona de trabajo**: Es el la zona en la que trabaja el empelado en el vivero.
-3. **Pedidos Gestionados**: Represneta la cantidad de pedisdo que gestionan un empleado.
- 
+1. **Identificación**: Es un atributo que nos permite diferenciar los distintos empleados del vivero.
+2. **Zona de trabajo**: Es la zona en la que trabaja el empleado en el vivero, útil para tener un registro de donde ha trabajo este empleado.
+3. **Pedidos Gestionados**: Representa la cantidad de pedidos que gestionan un empleado, es un atributo calculado pues su valor irá cambiando.
 
-### **Clientes**
+### **Clientes Tajinaste Plus**
 En esta entidad encontramos los siguientes atributos:
-1. **Fecha de Pago**: Es la fecha en la que se realiza el pago cada mes (ocurre a final de mes), no es un atributo primario pues habrá más de un cliente suscrito a este plan de la farmacia, lo que da lugar a que varias personas hagan el pago el mismo día.
-2. **Cuentra Bancaria**: Es el número de cuenta del cliente y obviamente es un atributo primario que sirve para identificar a cada cliente por separado, por lo que no se puede repetir.
-3. **DNI**: Es el DNI del cliente, es un atributo primario pues no queremos que se repitan DNIs.
-4. **Nombre**: Es el nombre del cliente.
-5. 
+1. **DNI**: Es el DNI del cliente, es un atributo primario pues no queremos que se repitan DNIs, además es perfecto para identificar a los clientes.
+2. **Fecha de Ingreso**: Es la fecha en la que el cliente se suscribió al servicio de Tajinaste Plus.
+3. **Compras Totales**: Es un atributo calculado que sirve para saber cuantas compras ha realizado el cliente desde que se unió al programa Tajinaste Plus.
 ## Descripción de cada una de las relaciones definidas.
-**Relación de la entidad *Medicamentos* con la entidad *Laboratorios***: Para relacionar la entidad de los medicamentos con la entidad de los laboratorios hemos creado una relación de **Compra**, de tal manera que los medicamentos se compran y los laboratorios venden (La cantidad está definida gracias a un atributo en la relación). En cuanto a la cardinalidad, un medicamento se puede comprar a varios laboratorios (1:N) y un laboratorio vende varios medicamentos (1:N).
-**Relación de la entidad *Medicamentos* con la entidad *Pedidos***: Para hacer relacionar ambas entidades hemos creado una relación de **Se Vende**, de tal manera que los medicamentos se venden en pedidos (un medicamento se vende en varios pedidos, con una cardinalidad de 1:N) y un pedido contiene medicamentos (con una cardinalidad de 1:N pues un pedido contiene N medicamentos).
-**Relación de la entidad *Pedidos* con la entidad *Clientes***: Para relacionarlas hemos creado una relación de **Con Crédito** de tal manera que un pedido lo realiza un cliente con credito (1:1 pues cada cliente realiza 1 pedido).
+**Relación de la entidad *Vivero* con la entidad *Zona***: Para relacionar la entidad de los viveros con la entidad de los laboratorios hemos creado una relación de **Tiene**, de tal manera que los viveros poseen zonas y las zonas pertenecen a un vivero. En cuanto a la cardinalidad, un vivero posee varias zonas (1:N) y varias zonas perteneces a un vivero (N:1).
+
+**Relación de la entidad *Vivero* con la entidad *Empleado***: Para hacer relacionar ambas entidades hemos creado una relación de **Trabaja**, de tal manera que en un vivero trabajan varios empleados (cardinalidad de 1:N) y un empleado trabaja en un vivero (con una cardinalidad de 1:1), además la relación de **Trabaja** posee el atributo *Época de Trabajo*, de tal manera que estamos restringiendo al empleado a trabajar en un solo vivero según la época, de esta manera un empleado podrá trabajar en varios viveros a lo largo del año, pero nunca estará en más de uno a la vez debido a que tiene asignada una época de trabajo a cada uno.
+
+**Relación de la entidad *Empleado* con la entidad *Clientes Tajinaste Plus***: Para relacionarlas hemos creado una relación de **Gestión** de tal manera que un empleado gestiona a varios clientes de tajinaste plus (por tanto tiene una cardinalidad de 1:N) y varios clientes son gestionados por un empleado (N:1).
+
+**Relación de la entidad *Vivero* con la entidad *Clientes Tajinaste Plus***: Hemos relacionado ambas entidades con una relación llamada **Compra Mensual** de tal manera que el un cliente compra varios productos al mes en los viveros (cardinalidad 1:N) y los viveros venden varios productos al mes a varios clientes (cardinalidad de N:N). Además la relación de **Compra Mensual** posee un atributo calculado de bonificación con el que se calcula la bonificación que posee cada cliente.
+
+## Restricciones Propuestas
+Se nos han ocurrido las siguientes restricciones para la base de datos:
+1. No pueden haber cantidades negativos de los productos.
+2. Los pedidos gestionados no pueden ser números negativos.
+
 
 ## Foto del modelo
+
+![Modelo_ER](https://github.com/AdayCuestaCorrea/P02_ADBD/blob/main/Modelo_ER/DiagramaER_Viveros.png)
