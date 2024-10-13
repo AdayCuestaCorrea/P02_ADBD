@@ -40,17 +40,17 @@ En esta entidad encontramos los siguientes atributos:
 2. **Fecha de Ingreso**: Es la fecha en la que el cliente se suscribió al servicio de Tajinaste Plus.
 3. **Compras Totales**: Es un atributo calculado que sirve para saber cuantas compras ha realizado el cliente desde que se unió al programa Tajinaste Plus.
 ## Descripción de cada una de las relaciones definidas.
-**Relación de la entidad *Vivero* con la entidad *Zona***: Para relacionar la entidad de los viveros con la entidad de los laboratorios hemos creado una relación de **Tiene**, de tal manera que los viveros poseen zonas y las zonas pertenecen a un vivero. En cuanto a la cardinalidad, un vivero posee varias zonas (1:N) y varias zonas perteneces a un vivero (N:1).
+**Relación de la entidad *Vivero* con la entidad *Zona***: Para relacionar la entidad de los viveros con la entidad de la zona hemos creado una relación de **Tiene**, de tal manera que los viveros poseen zonas y las zonas pertenecen a un vivero. En cuanto a la cardinalidad, un vivero posee una o varias zonas (1:N) y una zona solo puede pertenecer a un vivero (1:1).
 
-**Relación de la entidad *Vivero* con la entidad *Empleado***: Para hacer relacionar ambas entidades hemos creado una relación de **Trabaja**, de tal manera que en un vivero trabajan varios empleados (cardinalidad de 1:N) y un empleado trabaja en un vivero (con una cardinalidad de 1:1), además la relación de **Trabaja** posee el atributo *Época de Trabajo*, de tal manera que estamos restringiendo al empleado a trabajar en un solo vivero según la época, de esta manera un empleado podrá trabajar en varios viveros a lo largo del año, pero nunca estará en más de uno a la vez debido a que tiene asignada una época de trabajo a cada uno.
+**Relación de la entidad *Vivero* con la entidad *Empleado***: Para hacer relacionar ambas entidades hemos creado una relación de **Trabaja**, de tal manera que en un vivero trabajan uno o varios empleados (cardinalidad de 1:N) y un empleado trabaja en uno o más viveros (con una cardinalidad de 1:N), aunque gracias a que la relación de **Trabaja** posee el atributo *Época de Trabajo*, estamos restringiendo al empleado a trabajar en un solo vivero según la época, de esta manera un empleado podrá trabajar en varios viveros a lo largo del año, pero nunca estará en más de uno a la vez debido a que tiene asignada una época de trabajo a cada uno.
 
-**Relación de la entidad *Empleado* con la entidad *Clientes Tajinaste Plus***: Para relacionarlas hemos creado una relación de **Gestión** de tal manera que un empleado gestiona a varios clientes de tajinaste plus (por tanto tiene una cardinalidad de 1:N) y varios clientes son gestionados por un empleado (N:1).
+**Relación de la entidad *Empleado* con la entidad *Clientes Tajinaste Plus***: Para relacionarlas hemos creado una relación de **Gestión** de tal manera que un empleado gestiona a varios clientes de tajinaste plus (por tanto tiene una cardinalidad de 1:N) y un cliente solo puede ser gestionado por un empleado (1:1).
 
-**Relación de la entidad *Vivero* con la entidad *Clientes Tajinaste Plus***: Hemos relacionado ambas entidades con una relación llamada **Compra Mensual** de tal manera que el un cliente compra varios productos al mes en los viveros (cardinalidad 1:N) y los viveros venden varios productos al mes a varios clientes (cardinalidad de N:N). Además la relación de **Compra Mensual** posee un atributo calculado de bonificación con el que se calcula la bonificación que posee cada cliente.
+**Relación de la entidad *Vivero* con la entidad *Clientes Tajinaste Plus***: Hemos relacionado ambas entidades con una relación llamada **Compra Mensual** de tal manera que el un cliente compra uno o varios productos al mes en los viveros (cardinalidad 1:N) y los viveros venden uno o varios productos al mes a los clientes (cardinalidad de 1:N). Además la relación de **Compra Mensual** posee un atributo calculado de bonificación con el que se calcula la bonificación que posee cada cliente.
 
 ## Restricciones Propuestas
 Se nos han ocurrido las siguientes restricciones para la base de datos:
-1. No pueden haber cantidades negativos de los productos.
+1. No pueden haber cantidades negativas de los productos.
 2. Los pedidos gestionados no pueden ser números negativos.
 
 
