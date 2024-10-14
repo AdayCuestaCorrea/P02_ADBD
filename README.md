@@ -39,6 +39,8 @@ En esta entidad encontramos los siguientes atributos:
 1. **DNI**: Es el DNI del cliente, es un atributo primario pues no queremos que se repitan DNIs, además es perfecto para identificar a los clientes.
 2. **Fecha de Ingreso**: Es la fecha en la que el cliente se suscribió al servicio de Tajinaste Plus.
 3. **Compras Totales**: Es un atributo calculado que sirve para saber cuantas compras ha realizado el cliente desde que se unió al programa Tajinaste Plus.
+4. **Compras**: Este atributo nos sirve para tener registrados los pedidos o compras hechas por los clientes.
+5. **Bonificación**: Este atributo calculado sirve para saber cual es la bonificación que tiene el cliente en el programa según las compras mensuales hechas.
 ## Descripción de cada una de las relaciones definidas.
 **Relación de la entidad *Vivero* con la entidad *Zona***: Para relacionar la entidad de los viveros con la entidad de la zona hemos creado una relación de **Tiene**, de tal manera que los viveros poseen zonas y las zonas pertenecen a un vivero. En cuanto a la cardinalidad, un vivero posee una o varias zonas (1:N) y una zona solo puede pertenecer a un vivero (1:1).
 
@@ -46,7 +48,7 @@ En esta entidad encontramos los siguientes atributos:
 
 **Relación de la entidad *Empleado* con la entidad *Clientes Tajinaste Plus***: Para relacionarlas hemos creado una relación de **Gestión** de tal manera que un empleado gestiona a varios clientes de tajinaste plus (por tanto tiene una cardinalidad de 1:N) y un cliente solo puede ser gestionado por un empleado (1:1).
 
-**Relación de la entidad *Vivero* con la entidad *Clientes Tajinaste Plus***: Hemos relacionado ambas entidades con una relación llamada **Compra Mensual** de tal manera que el un cliente compra uno o varios productos al mes en los viveros (cardinalidad 1:N) y los viveros venden uno o varios productos al mes a los clientes (cardinalidad de 1:N). Además la relación de **Compra Mensual** posee un atributo calculado de bonificación con el que se calcula la bonificación que posee cada cliente.
+**Relación de la entidad *Vivero* con la entidad *Clientes Tajinaste Plus***: Hemos relacionado ambas entidades con una relación llamada **Compra** de tal manera que el un cliente compra uno o varios productos en los viveros (cardinalidad 1:N) y los viveros venden uno o varios productos a los clientes (cardinalidad de 1:N).
 
 ## Restricciones Propuestas
 Se nos han ocurrido las siguientes restricciones para la base de datos:
